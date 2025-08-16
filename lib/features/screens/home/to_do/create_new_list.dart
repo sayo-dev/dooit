@@ -180,7 +180,8 @@ class CreateNewList extends HookWidget {
             ),
             body: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.only(bottom: 120.h), // Space for bottom sheet
+                padding: EdgeInsets.only(bottom: 120.h),
+                // Space for bottom sheet
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -229,7 +230,9 @@ class CreateNewList extends HookWidget {
                     .read<ToDoCubit>()
                     .updateListLocally(
                       listDetails: ListDetails(
-                        title: titleController.text.trim(),
+                        title: titleController.text.isEmpty
+                            ? selectedLabel.value!
+                            : titleController.text.trim(),
                         todoItems: state.todoItems,
                         label: selectedLabel.value!,
                         isPinned: isPinned.value,
