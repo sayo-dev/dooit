@@ -91,9 +91,11 @@ class Task extends HookWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        currentTask.title,
-                        style: Graphik.kFontW6.copyWith(fontSize: 24.spMin),
+                      Expanded(
+                        child: Text(
+                          currentTask.title,
+                          style: Graphik.kFontW6.copyWith(fontSize: 24.spMin),
+                        ),
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(
@@ -119,7 +121,7 @@ class Task extends HookWidget {
                     (todo) => Padding(
                       padding: EdgeInsets.only(bottom: 20),
                       child: Dismissible(
-                        key: Key(todo.id),
+                        key: Key('${todo.id}_${DateTime.now().millisecondsSinceEpoch}'),
                         direction: DismissDirection.endToStart,
                         onDismissed: (direction) {
                           context.read<ToDoCubit>().deleteTodo(
